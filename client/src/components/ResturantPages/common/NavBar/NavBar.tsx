@@ -14,7 +14,7 @@ export default function NavBar() {
                 fill="currentColor"
               />
             </svg>
-            <span className="text-xl font-semibold">FeedZzy</span>
+            <span className="text-xl font-semibold">Feedzzy</span>
           </a>
         </div>
   

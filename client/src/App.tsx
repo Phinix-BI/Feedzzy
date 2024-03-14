@@ -5,6 +5,8 @@ import OrderStatus from './components/ResturantPages/OrderComponents/OrderStatus
 
 import './styles.css'
 
+import StoreFront from './components/ResturantPages/StoreFront/StoreFront.tsx';
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -13,7 +15,7 @@ function App() {
     },
     {
       path: "/storeFront",
-      element: <CombineFile><h1> Hello World</h1></CombineFile>,
+      element: <CombineFile><StoreFront /></CombineFile>,
     }
 
   ]);
