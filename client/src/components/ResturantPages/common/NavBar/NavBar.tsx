@@ -22,7 +22,7 @@ export default function NavBar() {
           <nav aria-label="Global" className="hidden md:block">
             <ul className="flex items-center gap-6 text-sm">
               <li>
-                <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Home </a>
+                <a className="text-gray-500 transition hover:text-gray-500/75" href="/"> Home </a>
               </li>
 
               <li>
@@ -38,7 +38,7 @@ export default function NavBar() {
               </li>
   
               <li>
-                <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Storefront </a>
+                <a className="text-gray-500 transition hover:text-gray-500/75" href="/storefront"> Storefront </a>
               </li>
   
             </ul>

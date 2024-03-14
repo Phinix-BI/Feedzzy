@@ -1,14 +1,13 @@
-import AddressDetails from "../AddressDetails/AddressDetails.tsx";
-import NavBar from "../common/NavBar/NavBar.tsx";
+
+import AddressDetails from "../../AddressDetails/AddressDetails.tsx";
 import ItemPrice from "../ItemPrice/ItemPrice.tsx";
 import Order_Items from "../OrderItems/OrderItems.tsx";
 
-const OrderStatus = () => {
+  
+  const OrderStatus: React.FC = () => {
 return (
 
-    <div>
-        
-        <NavBar />
+    <>
        
         <div className="max-w-screen-xl mx-auto mt-10">
             <div>
@@ -46,7 +45,7 @@ return (
             </div>
         </div>
         
-    </div>
+    </>
     );
 }
 
