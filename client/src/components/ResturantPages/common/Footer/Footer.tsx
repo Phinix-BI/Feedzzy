@@ -30,10 +30,10 @@ const Footer = () => {
       </li>
     </ul>
 
-    <ul className="mt-6 flex justify-center gap-6 md:gap-8">
-        <h3>&#169; Feedzzy - by Developer Guys</h3>
+    <h3 className="mt-6 flex justify-center gap-6 md:gap-8">
+        &#169; Feedzzy - by Developer Guys
 
-    </ul>
+    </h3>
   </div>
 </footer>
     )
