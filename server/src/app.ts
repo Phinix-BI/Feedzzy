@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 );
 
 app.post('/resturnat/v1/basic/register', resturantdata);
+app.post('/resturnat/v1/basic/verify', resturantdata);
 
 app.listen(config.server.port, () => {
     console.log(`Server is running on port ${config.server.port}`);
