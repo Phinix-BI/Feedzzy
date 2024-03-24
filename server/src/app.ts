@@ -5,6 +5,7 @@ import cors from 'cors';
 import 'dotenv/config'
 import resturantdata from './routers/resturantdata.router.js';
 
+
 const app = express();
 
 connectDB();
@@ -23,7 +24,9 @@ app.get('/', (req, res) => {
 app.post('/resturnat/v1/basic/register', resturantdata);
 app.post('/resturnat/v1/basic/verify', resturantdata);
 
+
+
 app.listen(config.server.port, () => {
-    console.log(`Server is running on port ${config.server.port}`);
-    }
+        console.log(`Server is running on port ${config.server.port}`);
+        }
 );

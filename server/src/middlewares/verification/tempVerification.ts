@@ -3,6 +3,7 @@ import TempResturantRegisterData,{TempResturantRegister} from '../../models/temp
 import otpGenerator from 'otp-generator';
 import nodemailer from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport/index.js';
+import Twilio from 'twilio';
 
 interface verifyreqData {
     email: string;
@@ -66,7 +67,15 @@ export const verifyTempOtp = async (req: Request, res: Response): Promise<void> 
                 phone,otp,otpExpires
             });
 
+            const result = await otpServiceForPhone(phone, otp);
             
+
+
+            if(result){
+                res.status(200).json({message: "Otp sent successfully",user:createUser});
+            }else{
+                res.status(500).json({message: "Internal server error"});
+            }
 
         }else if(nameOfVerification === "resturantPhone"){
 
@@ -79,7 +88,14 @@ export const verifyTempOtp = async (req: Request, res: Response): Promise<void> 
                 resturantPhone,otp,otpExpires
             });
             
+            const result = await otpServiceForPhone(resturantPhone, otp);
            
+            if(result){
+                res.status(200).json({message: "Otp sent successfully",user:createUser});
+            }else{
+                res.status(500).json({message: "Internal server error"});
+            }
+
            
         }
 
@@ -112,3 +128,25 @@ const otpServiceForEmail = async (email: string, otp: Number): Promise<SMTPTrans
    return result;
 
 }
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+
+const client = Twilio(accountSid, authToken);
+
+const otpServiceForPhone = async (phone: string, otp: Number): Promise<string> => { 
+    try {
+        const result = await client.messages.create({
+            body: `OTP for phone verification is ${otp}`,
+            to: `+91${phone}`,
+            from: process.env.TWILIO_PHONE_NUMBER
+        });
+        
+        console.log(result.sid); // Logging the SID of the sent message
+        return result.sid; // Returning SID upon successful sending
+    } catch(error) {
+        console.error(error);
+        throw error; // Re-throwing error for handling elsewhere if needed
+    }
+}
+
