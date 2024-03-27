@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
 );
 
 app.post('/resturnat/v1/basic/register', resturantdata);
-app.post('/resturnat/v1/basic/verify', resturantdata);
+app.post('/resturnat/v1/basic/send/otp', resturantdata);
+app.post('/resturnat/v1/basic/verify/otp', resturantdata);
 
 
 

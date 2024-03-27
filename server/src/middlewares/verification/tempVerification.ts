@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport/index.js';
 import Twilio from 'twilio';
 
+
 interface verifyreqData {
     email: string;
     phone: string;
@@ -15,7 +16,7 @@ interface verifyreqData {
     verified: boolean;
 }
 
-export const verifyTempOtp = async (req: Request, res: Response): Promise<void> => {
+export const sendTempOtp = async (req: Request, res: Response): Promise<void> => {
     try{
         const reqData : verifyreqData = req.body;
         if(!reqData){
@@ -30,6 +31,7 @@ export const verifyTempOtp = async (req: Request, res: Response): Promise<void> 
             return;
         }
 
+
         const otp = Number(otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false }));
 
         const otpExpires = new Date();
@@ -38,14 +40,20 @@ export const verifyTempOtp = async (req: Request, res: Response): Promise<void> 
         let createUser : unknown ;
 
         if(nameOfVerification === "email"){
-            if(!email){
-                res.status(400).json({message: "Invalid data"});
+            if (!email) {
+                res.status(400).json({ message: "Invalid data" });
                 return;
             }
 
-             createUser = await TempResturantRegisterData.insertMany({
-                email,otp,otpExpires
+            const findUser = await TempResturantRegisterData.findOne({ email });
+
+            if(findUser){
+                createUser = await TempResturantRegisterData.updateOne({email}, {otp, otpExpires});
+            }else{
+                createUser = await TempResturantRegisterData.insertMany({
+                email, otp, otpExpires
             });
+            }
 
             const result = await otpServiceForEmail(email, otp);
 
@@ -63,9 +71,16 @@ export const verifyTempOtp = async (req: Request, res: Response): Promise<void> 
                 return;
             }
 
-             createUser = await TempResturantRegisterData.insertMany({
+            const findUser = await TempResturantRegisterData.findOne({ phone });
+
+            if(findUser){
+                createUser = await TempResturantRegisterData.updateOne({phone}, {otp, otpExpires});
+            }else{
+                createUser = await TempResturantRegisterData.insertMany({
                 phone,otp,otpExpires
             });
+            
+            };  
 
             const result = await otpServiceForPhone(phone, otp);
             
@@ -84,10 +99,16 @@ export const verifyTempOtp = async (req: Request, res: Response): Promise<void> 
                 return;
             }
 
+            const findUser = await TempResturantRegisterData.findOne({resturantPhone});
+
+            if(findUser){
+                createUser = await TempResturantRegisterData.updateOne({resturantPhone}, {otp, otpExpires});
+            }else{
              createUser = await TempResturantRegisterData.insertMany({
                 resturantPhone,otp,otpExpires
             });
-            
+             }
+             
             const result = await otpServiceForPhone(resturantPhone, otp);
            
             if(result){
@@ -149,4 +170,37 @@ const otpServiceForPhone = async (phone: string, otp: Number): Promise<string> =
         throw error; // Re-throwing error for handling elsewhere if needed
     }
 }
+
+export const verifyTempOtp = async (req: Request, res: Response): Promise<void> => {
+    try{
+        const {otp} = req.body;
+
+        if(!otp){
+            res.status(400).json({message: "Invalid data"});
+            return;
+        }
+
+        const user = await TempResturantRegisterData.findOne({otp});
+
+        if(!user){
+            res.status(400).json({message: "Invalid otp"});
+            return;
+        }
+
+        const currentTime = new Date();
+        if(currentTime > user.otpExpires){
+            res.status(400).json({message: "Otp expired"});
+            return;
+        }
+
+        await user.deleteOne();
+
+
+        res.status(200).json({message: "Otp verified successfully"});
+
+    }catch(error){
+        res.status(500).json({message: "Internal server error"});
+    }
+}
+    
 
