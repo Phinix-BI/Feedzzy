@@ -193,7 +193,10 @@ export const verifyTempOtp = async (req: Request, res: Response): Promise<void> 
             return;
         }
 
-        await user.deleteOne();
+        // await user.deleteOne();
+
+        user.verified = true;
+        await user.save();  
 
 
         res.status(200).json({message: "Otp verified successfully"});

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import RestaurantModel ,{ RestaurantData,RestaurantDetail } from "../models/resturant.model.js"
+import TempResturantRegisterData from '../models/tempResturantRegisterData.js';
 
 
 export const RestaurantRegistrationHandler  = async(req : Request, res : Response) : Promise<void> => {
@@ -47,9 +48,35 @@ export const RestaurantRegistrationHandler  = async(req : Request, res : Respons
             resturantName, resturantPhone,resturantAddress
           };
 
+          const checkPhoneVerification = await TempResturantRegisterData.findOne({phone});
+            if(checkPhoneVerification?.verified === false || !checkPhoneVerification){
+                res.status(400).json({message: "Phone not verified"});
+                return;
+            }
+            
+            const checkEmailVerification = await TempResturantRegisterData.findOne({email});
+            if(checkEmailVerification?.verified === false || !checkEmailVerification){
+                res.status(400).json({message: "Email not verified"});
+                return;
+            }
+
+            const checkResturantPhoneVerification = await TempResturantRegisterData.findOne({phone : resturantPhone});
+
+            if(checkResturantPhoneVerification?.verified === false || !checkResturantPhoneVerification){
+               
+                res.status(400).json({message: "Restaurant phone not verified"});
+                return;
+            }
+
         const restaurant = await RestaurantModel.insertMany({
             ownerName,phone,email,RestaurantBasicDetails   
         });  
+
+        await Promise.all([
+            checkPhoneVerification.deleteOne(),
+            checkEmailVerification.deleteOne(),
+            ...(phone !== resturantPhone ? [checkResturantPhoneVerification.deleteOne()] : [])
+        ]);
 
         res.status(200).send({ restaurant });
 
