@@ -2,6 +2,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import CombineFile from './components/ResturantPages/CombineFile/CombineFile.tsx';
 import OrderStatus from './components/ResturantPages/OrderComponents/OrderStatus/OrderStatus.tsx';
+import Setting from './components/UserPages/Setting/Setting.tsx';
+import Profile from './components/UserPages/Setting/Profile/Profile.tsx';
 
 import './styles.css'
 
@@ -19,8 +21,13 @@ function App() {
       element: <CombineFile><StoreFront /></CombineFile>,
     },
     {
+<<<<<<< HEAD
       path: "/resturant/register/basicInformation",
       element: <BasicInformation/>
+=======
+      path: "/user/setting/profile",
+      element: <CombineFile><Profile /></CombineFile>,
+>>>>>>> 657948c4113b2bc1dd5dc199731decd3a6cfd0c9
     }
 
   ]);

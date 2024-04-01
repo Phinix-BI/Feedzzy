@@ -58,7 +58,7 @@ const StoreFront : FC = () => {
             <div>
               <label className="block text-medium font-medium text-gray-700" htmlFor="phone">Phone</label>
               <input
-                className="w-full mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
+                className=" mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
                 placeholder="(123) 456-7890"
                 type="tel"
                 id="phone"
@@ -68,7 +68,7 @@ const StoreFront : FC = () => {
 
               <label className="block text-medium font-medium text-gray-700" htmlFor="email">Email</label>
               <input
-                className="w-full mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
+                className=" mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
                 placeholder="you@example.com"
                 type="email"
                 id="email"
@@ -77,7 +77,7 @@ const StoreFront : FC = () => {
             <div>
               <label className="block text-medium font-medium text-gray-700" htmlFor="Address">Street Address</label>
               <input
-                className="w-full mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
+                className="mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
                 placeholder="1234 Main St"
                 type="tel"
                 id="Address"
@@ -86,7 +86,7 @@ const StoreFront : FC = () => {
             <div>
               <label className="block text-medium font-medium text-gray-700" htmlFor="OptionalAddress">Apt, Suite, Bldg (optional)</label>
               <input
-                className="w-full mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
+                className=" mt-1 rounded-lg border-gray-200 p-3 text-sm sm:w-4/5 w-full"
                 placeholder="Apt 1"
                 type="tel"
                 id="OptionalAddres"
