@@ -2,6 +2,8 @@ import NavBar from "../common/NavBar/NavBar.tsx";
 import  {  useState } from "react";
 import BasicDetails from "../Register1/BasicDetails/BasicDetails.tsx";
 import Owners_Contact_Details from "../Register1/Owner_Contact_Details/Owner_Contact_Details.tsx";
+import OpeningDates from "../Register1/OpeningDates/OpeningDates.tsx";
+import Opening_Closing_Time from "../Register1/Opening_Closing_Time/Opening_Closing_Time.tsx";
 
 function BasicInformation() {
   const [ownerFullName, setOwnerFullName] = useState<string>("");
@@ -11,6 +13,8 @@ function BasicInformation() {
   const [ownerPhoneNumber, setOwnerPhoneNumber] = useState<string>("");
   const [whatsappNumber, setWhatsappNumber] = useState<string>("");
   const [isDiffWhastappNumber, setIsDiffWhatsappNumber] = useState<boolean>(false);
+  const [checkedDays, setCheckedDays] = useState<string[]>([]);
+  
 
   return (
 
@@ -37,7 +41,10 @@ function BasicInformation() {
                     <BasicDetails ownerFullName={ownerFullName} resturantName={resturantName} resturantAddress={resturantAddress} onChangeOwnerFullName={setOwnerFullName} onChangeResturantName={setResturantName} onChangeResturantAddress={setResturantAddress} />
                     <Owners_Contact_Details ownerEmailAddress={ownerEmailAddress} ownerPhoneNumber={ownerPhoneNumber} whatsappNumber={whatsappNumber} onChangeOwnerEmailAddress={setOwnerEmailAddress} onChangeOwnerPhoneNumber={setOwnerPhoneNumber}
                     onChangeWhatsappNumber={setWhatsappNumber} isDiffWhatsappNumber={isDiffWhastappNumber} onChangeIsDiffWhatsappNumber={setIsDiffWhatsappNumber} />
+                    <OpeningDates checkedDays={checkedDays} setCheckedDays={setCheckedDays} />
+                    <Opening_Closing_Time />
                   </div>
+
                  
                   
                 </div>           

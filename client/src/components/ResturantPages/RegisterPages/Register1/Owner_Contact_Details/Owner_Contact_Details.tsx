@@ -64,7 +64,7 @@ const Owners_Contact_Details: React.FC<Owners_contact_details_Props> = ({ ownerE
                              onChange={handelRadioChange} />
                         </div>
                         <div className='pl-3'>
-                            <label htmlFor="ColorBlue1" className="text-sm text-semibold text-gray-400">My WhatsApp number is same as above</label>
+                            <label htmlFor="ColorBlue1" className="text-sm cursor-pointer text-semibold text-gray-400">My WhatsApp number is same as above</label>
                         </div>
                     </div>
                     <div className='flex'>
@@ -74,17 +74,18 @@ const Owners_Contact_Details: React.FC<Owners_contact_details_Props> = ({ ownerE
                                 onChange={handelRadioChange} />
                         </div>
                         <div className='pl-3'>
-                            <label htmlFor="ColorBlue2" className="text-sm text-semibold text-gray-400">I have a Different WhatsApp number</label>
+                            <label htmlFor="ColorBlue2" className="text-sm cursor-pointer text-semibold text-gray-400">I have a Different WhatsApp number</label>
                         </div>
                     </div>
                 </div>
 
                 {isDiffWhatsappNumber && (
                 <div className="px-5 py-5 ">
-                    <label htmlFor="WhatsappNumber" className="w-full  relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+                    <label htmlFor="WhatsappNumber" className="w-full relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
 
-                        <input type="text" id="WhatsappNumber" className="w-full  peer border-none bg-transparent  focus:border-transparent focus:outline-none focus:ring-0" placeholder="WhatsApp Number" value={whatsappNumber} onChange={(e) => onChangeWhatsappNumber?.(e.target.value)} />
-
+                        <input type="text" id="WhatsappNumber" className="w-full   peer border-none bg-transparent  focus:border-transparent focus:outline-none focus:ring-0" placeholder="WhatsApp Number" value={whatsappNumber} onChange={(e) => onChangeWhatsappNumber?.(e.target.value)} />
+                        <span className="absolute end-0  top-0.5 cursor-pointer my-auto px-4 py-1.5 text-xs font-medium text-orange-600 ">VERIFY
+                        </span>
                         <span className="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-md text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-md peer-focus:top-0 peer-focus:text-xs" >
                             WhatsApp Number
                         </span>
