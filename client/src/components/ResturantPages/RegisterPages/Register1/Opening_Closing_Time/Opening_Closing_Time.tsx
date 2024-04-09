@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { TimePicker } from 'react-ios-time-picker';
+import React from 'react';
+
 
 interface Opening_Closing_Time_Props {
     isDiffOpeningClosingTime ?: boolean;
@@ -7,10 +7,7 @@ interface Opening_Closing_Time_Props {
 }
 
 const Opening_Closing_Time : React.FC<Opening_Closing_Time_Props> = ({isDiffOpeningClosingTime,onChangeIsDiffOpeningClosingTime}) => {
-    const [value, setValue] = useState('open time' || "00:00");
-    const onChange = (timeValue) => {
-        setValue(timeValue);
-     }
+
     const handelRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value === 'ColorBlue1') {
             onChangeIsDiffOpeningClosingTime && onChangeIsDiffOpeningClosingTime(false);
@@ -52,7 +49,7 @@ const Opening_Closing_Time : React.FC<Opening_Closing_Time_Props> = ({isDiffOpen
                 <hr className="h-px my-4 mx-3 border-1 border-dashed bg-gray-400" />
 
                 <div className='mt-6'>
-                <TimePicker onChange={onChange} value={value} className="py-8" />
+                
                 </div>
                 
             </div>
