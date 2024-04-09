@@ -1,4 +1,5 @@
 import React from 'react';
+import TimePicker from '../TimePicker/TimePicker.tsx';
 
 
 interface Opening_Closing_Time_Props {
@@ -18,7 +19,7 @@ const Opening_Closing_Time : React.FC<Opening_Closing_Time_Props> = ({isDiffOpen
 
     return (
         <>
-            <div className="bg-white rounded-3xl mx-4 my-6 px-5 ">
+            <div className="bg-white rounded-3xl mx-4 my-6 px-5 pb-5">
                    
                 <div className="px-5 pt-5  pb-3 font-semibold text-lg">
                     <h2>Opening & Closing time</h2>
@@ -48,10 +49,9 @@ const Opening_Closing_Time : React.FC<Opening_Closing_Time_Props> = ({isDiffOpen
 
                 <hr className="h-px my-4 mx-3 border-1 border-dashed bg-gray-400" />
 
-                <div className='mt-6'>
+                <TimePicker />
                 
-                </div>
-                
+                <div className='mx-2  text-sm px-2 py-3 rounded-2xl bg-zinc-200 '>Longer operational timings ensures you get 1.5X more orders and helps you avoid cancellations. </div>
             </div>
         </>
     )
