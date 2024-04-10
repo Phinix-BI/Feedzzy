@@ -36,7 +36,7 @@ function BasicInformation() {
                   <div className="h-fit bg-white-200 mb-8 lg:col-span-3 px-12 ">
 
                     <div className="font-bold text-3xl px-5 pt-4  my-3">
-                      <h1>Resturant Information</h1>
+                      <h1>Restaurant Information</h1>
                     </div>
 
                     <BasicDetails ownerFullName={ownerFullName} resturantName={resturantName} resturantAddress={resturantAddress} onChangeOwnerFullName={setOwnerFullName} onChangeResturantName={setResturantName} onChangeResturantAddress={setResturantAddress} />
