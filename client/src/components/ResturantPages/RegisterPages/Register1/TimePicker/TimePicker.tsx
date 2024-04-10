@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './TimePicker.css'; // Import CSS file for styling
+
 
 const TimePicker: React.FC = () => {
     const [showOpeningPicker, setShowOpeningPicker] = useState(false);
