@@ -2,3 +2,27 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 /* @import 'tailwindcss/forms'; */
+
+
+/* Glowing circle */
+@keyframes glow {
+    0% {
+      box-shadow: 0 0 5px #64D45F, 0 0 10px #64D45F, 0 0 15px #64D45F;
+    }
+    50% {
+      box-shadow: 0 0 10px #64D45F, 0 0 20px #64D45F, 0 0 30px #64D45F;
+    }
+    100% {
+      box-shadow: 0 0 5px #64D45F, 0 0 10px #64D45F, 0 0 15px #64D45F;
+    }
+  }
+  
+  .glowing-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #64D45F; /* Adjust the color as needed */
+    animation: glow 1.5s infinite alternate; /* Adjust animation duration and timing as needed */
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
