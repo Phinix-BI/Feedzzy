@@ -12,6 +12,7 @@ import BasicInformation from './components/ResturantPages/RegisterPages/BasicInf
 
 function App() {
   const router = createBrowserRouter([
+    
     {
       path: "/",
       element: <CombineFile><OrderStatus /></CombineFile>,
